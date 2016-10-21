@@ -1,7 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit }  from '@angular/core';
+import { RouterModule }       from '@angular/router';
 
 import { Hero }         from './hero';
 import { HeroService }  from "./hero.service";
+
+RouterModule.forRoot([
+  {
+    path: 'heroes',
+    component: HeroesComponent
+  }
+])
 
 @Component({
   selector: 'my-heroes',
