@@ -4,9 +4,10 @@ import { FormsModule }    from '@angular/forms';
 import { RouterModule }   from '@angular/router';
 
 import { AppComponent }         from './app.component';
-import { HeroDetailComponent }  from './hero-detail.component';
-import { HeroesComponent }      from './heroes.component';
 import { HeroService }          from './hero.service';
+
+import { HeroesComponent }      from './heroes.component';
+import { HeroDetailComponent }  from './hero-detail.component';
 import { DashboardComponent }   from './dashboard.component';
 
 @NgModule({
@@ -18,6 +19,10 @@ import { DashboardComponent }   from './dashboard.component';
         path: '',
         redirectTop: '/dashboard',
         pathMatch: 'full',
+        component: DashboardComponent
+      },
+      {
+        path: 'dashboard',
         component: DashboardComponent
       },
       {
