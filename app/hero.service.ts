@@ -12,10 +12,11 @@ export class HeroService {
   constructor(private http: Http) { }
 
   getHeroes(): Promise<Hero[]> {
-    return this.http.get(this.heroesUrl)
-               .toPromise()
-               .then(response => response.json().data as Hero[])
-               .catch(this.handleError);
+    return this.http
+      .get(this.heroesUrl)
+      .toPromise()
+      .then(response => response.json().data as Hero[])
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
@@ -33,5 +34,16 @@ export class HeroService {
     return new Promise<Hero[]>(resolve =>
             setTimeout(resolve, 2000)
            ).then(() => this.getHeroes());
+  }
+
+  private headers = new Headers({'Content-Type': 'application/json'});
+
+  update(hero: Hero): Promise<Hero> {
+    const url = `${this.heroesUrl}/${hero.id}`;
+    return this.http
+      .put(url, JSON.stringify(hero), {headers: this.headers})
+      .toPromise()
+      .then(() => hero)
+      .catch(this.handleError);
   }
 }
